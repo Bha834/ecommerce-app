@@ -37,5 +37,15 @@ pipeline {
                 '''
             }
         }
+
+        stage('Deploy') {
+            steps {
+                // Agar container pehle se run ho to usko delete karke naya run karega
+                sh '''
+                    docker rm -f myshop-container || true
+                    docker run -d -p 5000:5000 --name myshop-container $DOCKER_CREDENTIALS_USR/$IMAGE_NAME:$IMAGE_TAG
+                '''
+            }
+        }
     }
 }
