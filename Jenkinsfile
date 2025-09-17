@@ -2,22 +2,19 @@ pipeline {
     agent any
 
     environment {
-        // Use Jenkins credentials (create one in Jenkins → Manage Jenkins → Credentials)
-        // with ID = dockerhub-cred (username + password)
+        // Jenkins credentials ka ID (dockerhub-cred)
         DOCKER_CREDENTIALS = credentials('dockerhub-cred')
         IMAGE_NAME = "myshop"
         IMAGE_TAG = "v1"
     }
-    stage('Debug') {
-    steps {
-        sh 'echo "DockerHub username is $DOCKER_CREDENTIALS_USR"'
-    }
-}
-
-
-    
 
     stages {
+        stage('Debug') {
+            steps {
+                sh 'echo "DockerHub username is $DOCKER_CREDENTIALS_USR"'
+            }
+        }
+
         stage('Checkout') {
             steps {
                 git branch: 'main',
