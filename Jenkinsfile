@@ -2,7 +2,9 @@ pipeline {
   agent any
   stages {
     stage('Checkout') {
-      steps { git 'https://github.com/Bha834/ecommerce-app.git' }
+      steps { 
+        git branch: 'main',
+          url: 'https://github.com/Bha834/ecommerce-app.git' }
     }
     stage('Build Docker') {
       steps { sh 'docker build -t myshop:v1 .' }
