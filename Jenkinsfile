@@ -8,6 +8,14 @@ pipeline {
         IMAGE_NAME = "myshop"
         IMAGE_TAG = "v1"
     }
+    stage('Debug') {
+    steps {
+        sh 'echo "DockerHub username is $DOCKER_CREDENTIALS_USR"'
+    }
+}
+
+
+    
 
     stages {
         stage('Checkout') {
